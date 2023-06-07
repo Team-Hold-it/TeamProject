@@ -9,7 +9,7 @@
 
 
 ## 목차
-- [🎉✨ Welcome `멈춰!(Hold it!)` Project 😀](#-welcome-Hold it!-project-)
+- [🎉✨ Welcome `멈춰!(Hold it!)` Project 😀]
   - [목차](#목차)
   - [📜 스토리](#-스토리)
   - [프로젝트 목표](#프로젝트-목표)
