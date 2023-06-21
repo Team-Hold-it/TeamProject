@@ -65,9 +65,12 @@
         </div>
         {% elif input_extension == 'mp4' %}
         <div class="container">
-            <video autoplay loop muted width=600px height=430px>
-                <source src="{{ url_for('static', filename=img_file) }}" type="video/mp4"></source>
-                <source src="{{ url_for('static', filename=predict_file) }}" type="video/mp4"></source>
+            <video id="video1" autoplay loop muted width=600px height=430px>
+                <source src="{{ url_for('static', filename=img_file) }}" type="video/mp4">
+            </video>
+
+            <video id="video2" autoplay loop muted width=600px height=430px>
+                <source src="{{ url_for('static', filename=predict_file) }}" type="video/mp4">
             </video>
         </div>
         {% else %}
