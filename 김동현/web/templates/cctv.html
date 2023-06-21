@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+        rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+        crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>Stop!</title>
+    <style>
+        .container-fluid {
+            padding: 10px;
+        }
+        .navbar {
+            background-color: $blue-400;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar-expand-lg bg-light">
+      <div class="container-fluid">
+        <ul class="nav nav-pills">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/pjintro">Project intro</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/mdintro">Model intro</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/develop">Model develop</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/service">Service</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/remind">Remind</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="/cctv">cctv</a>
+          </li>
+        </ul>
+      </div>
+
+    </nav>
+
+    <main class="flex-shrink-0">
+        <div class="container">
+            <h1 class="mt-5">CCTV 실시간 영상 다운로드</h1>
+            <hr>
+            <p class="lead"><strong style="font-weight: bold; color: #003382;">CCTV 위치</strong>와 <strong style="font-weight: bold; color: #003382;">녹화시간</strong>을 
+            선택해주세요.</p>
+            <hr>
+        </div>
+        
+        <!-- CCTV form begins here -->
+        <div class="container">
+          <form method="POST" action="/cctv">
+            <div class="form-group">
+              <label for="cctvname">CCTV 위치:</label><br>
+              
+              <!-- CCTV names 드롭다운 목록 -->
+              <select id="cctvname" name="cctvname" class="form-control mb-1" style="width: 240px;"> <!-- id와 name 모두 'cctvname'으로 설정하여 form 데이터에서 CCTV 이름을 찾을 수 있음 -->
+                {% for name in cctvnames %} <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="{{ name }}" {% if name == selected_cctvname %}selected{% endif %}>{{ name }}</option>
+                {% endfor %}
+              </select>
+              <button id="add-cctv" type="button" class="btn btn-primary mt-1 mb-3">CCTV 추가</button>
+            </div>
+
+            <div class="form-group">
+              <label for="time">녹화시간 (초):</label><br>
+
+              <!-- time 드롭다운 목록 -->
+
+              <select id="time" name="time" class="form-control mb-1" style="width: 240px;"> <!-- form-control 클래스는 Bootstrap에서 폼 컨트롤에 대한 기본 스타일을 적용하기 위한 클래스입니다. 이 클래스를 사용하면 요소에 적절한 패딩, 폰트 크기, 테두리 라운딩 등이 자동으로 적용됨 -->
+                  <option value="10">10 초</option> <!-- 10초를 선택항목 값으로 설정. 사용자는 '10 seconds'라는 텍스트를 화면에서 볼 수 있음 -->
+                  <option value="20">20 초</option>
+                  <option value="300">300 초</option>
+                  <!-- 필요에 따라 더 많은 옵션을 추가할 수 있음 -->
+              </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary mt-1 mb-3">다운로드</button><!-- '다운로드' 버튼. 이 버튼을 클릭하면 form이 제출됨 -->
+          </form>
+        </div>
+        <!-- CCTV form ends here -->
+        <!-- 추가된 CCTV 이름을 표시할 영역 -->
+        <div class="container">
+          <h3>CCTV 목록:</h3>
+          <ul id="addedCCTVNames"></ul> <!-- 초기에는 빈 목록으로 설정 -->
+        </div>
+
+        <script>
+          document.getElementById('add-cctv').addEventListener('click', function() {
+            var cctvSelect = document.getElementById('cctvname');
+            var selectedCCTVName = cctvSelect.options[cctvSelect.selectedIndex].value;
+            var listItem = document.createElement('li');
+            listItem.textContent = selectedCCTVName;
+            document.getElementById('addedCCTVNames').appendChild(listItem);
+        
+            // 선택한 CCTV 이름을 <select> 태그에서 제거
+            cctvSelect.remove(cctvSelect.selectedIndex);
+
+            // 선택한 CCTV 이름을 <input type="hidden"> 태그로 추가
+            var hiddenInput = document.createElement('input');
+            hiddenInput.type = 'hidden';
+            hiddenInput.name = 'cctvname';
+            hiddenInput.value = selectedCCTVName;
+            document.querySelector('form').appendChild(hiddenInput);
+          });
+        </script>        
+    </main>
+</body>
+
+</html>
