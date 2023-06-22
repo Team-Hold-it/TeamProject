@@ -5,11 +5,10 @@ from ultralytics import YOLO
 import shutil
 import cv2
 
-# 결로 설정
+# 경로 설정
 path = os.getcwd() # C:\Users\user\section6\tp2\code_file
-yolo_path = path + '/yolov5/'
-img_path = path + '/web/static/images/img/'
-predict_path = path + '/web/static/images/'
+img_path = path + '/web/static/images/img'
+predict_path = path + '/web/static/images'
 v8_predict_path = path + '/runs/detect'
 
 app = Flask(__name__)
@@ -71,19 +70,20 @@ def detect():
 
             # YOLOv8 예측
             # model = YOLO('yolov8s.pt')
-            model = YOLO(yolo_path + 'runs/best3.pt') # 가중치 best.pt 경로
-            result = model.predict(source=img_path + filename,
+            model = YOLO(path + 'test_weight.pt') # 가중치 best.pt 경로
+            result = model.predict(source=img_path + + '/' +filename,
                                    conf=0.25,
                                    save=True) # v8_predict_path 에 저장됨
 
             # predict 함수에 저장 경로 수정 파라미터가 없어서 따로 코드로 옮기기
-            shutil.move(v8_predict_path + '/predict/' + filename, predict_path + 'predict/' + filename)
+            shutil.move(v8_predict_path + '/predict/' + filename, predict_path + '/predict/' + filename)
             if os.path.isdir(v8_predict_path):
                 shutil.rmtree(v8_predict_path)
 
             # static 폴더안에 경로 설정
             img_file = 'images/img/' + filename
             predict_file = 'images/predict/' + filename
+
 
         return render_template('7_predict.html',
                                img_file=img_file,
