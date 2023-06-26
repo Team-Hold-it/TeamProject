@@ -9,14 +9,63 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
         rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
         crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <title>Stop!</title>
     <style>
+        body {
+            background-image: url(../static/images/web_img/background2.png);
+            width: 100%;
+            height: 100%;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+            margin-bottom: 5%;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+        main {
+            margin-top: 108px;
+            min-width: 600px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .navbar-expand-lg {
+            position: fixed;
+            top: 0px;
+            width: 100%;
+        }
         .container-fluid {
             padding: 10px;
+            box-shadow: 0px 2px 5px -1px gray;
         }
-        .navbar {
-            background-color: $blue-400;
+        .container {
+            text-align: center;
+
+        }
+        .blue-strong {
+            font-weight: bold;
+            color: #003382;
+        }
+        .menu-font {
+            font-weight: bold;
+        }
+        .lead {
+            text-align: left;
+        }
+        .left {
+            text-align: left;
+        }
+        .togle {
+            font-size: 24px;
+        }
+        footer {
+            width: 100%;
+            height: 60px;
+            bottom: 0;
+            left: 0;
         }
     </style>
 </head>
@@ -47,22 +96,224 @@
       </div>
     </nav>
 
-    <main class="flex-shrink-0">
+    <main>
         <div class="container">
-            <h1 class="mt-5">Model development</h1>
+            <h1>Model 개발 과정</h1>
             <hr>
-            <p class="lead"><strong style="font-weight: bold; color: #003382;">strong</strong> and <strong style="font-weight: bold; color: #003382;">strong</strong> contents</p>
+            <p class="lead">실시간으로 정확도 높은 검출을 해야 하는 교통 법규 위반 프로젝트 멈춰에 가장 적합하다고 생각하여 <strong class="blue-strong">YOLO 모델</strong>을 선택하게 되었습니다.
+                YOLO 모델에서도 여러 가지 버전으로 나뉘기 때문에 몇 가지 버전을 실험적으로 학습 진행 후 최종 모델을 선정하였습니다.</p>
+            <p class="lead"></p>
             <br>
-            <p>select</p>
 
+            <h2>데이터 소개 및 전처리</h2>
             <hr>
+
+            <h4 class="left">1. 라벨링 데이터</h4>
+            <br>
+            <table width=100%>
+                <tr>
+                    <td><img src="../static/images/web_img/annotation_table.png" width=100% style="max-width: 600px;"></td>
+                    <td><img src="../static/images/web_img/pm_table.png" width=100% style="max-width: 600px;"></td>
+                </tr>
+                <tr>
+                    <td><b>[표1] 어노테이션 표</b></td>
+                    <td><b>[표2] 라벨링 표</b></td>
+                </tr>
+            </table>
+            <br>
+
+            <table width=100%>
+                <tr>
+                    <td width=50%><img src="../static/images/web_img/json.png" width=100% style="max-width: 400px;"</td>
+                    <td width=50%><img src="../static/images/web_img/txt.png" width=100% style="max-width: 600px;">
+                </tr>
+                <tr>
+                    <td><b>[사진1] 전처리 전 json 파일</b></td>
+                    <td><b>[사진2] 전처리 후 txt 파일</b></td>
+                </tr>
+            </table>
+            <br>
+            <p class="left">프로젝트 목표에 맞게 <b>device 컬럼에서 CCTV</b> 정보와 <b>PM_code 컬럼에서 오토바이 위반 행위(pm code 13~19)</b>에 맞는 <b>video_id 컬럼을 추출</b>해서 해당 jpg 이미지와 라벨링 데이터를 저장했습니다.</p>
+            <p class="left">라벨링 데이터는 YOLO 학습 진행을 위해 <b>PM 항목에 PM_code 컬럼과 points 컬럼</b>을 통해 다음과 같이 진행했습니다.</p>
+            <ul style="list-style-type:decimal"><b>
+                <li class="left">pm_code = pm_code - 13</li>
+                <li class="left">x_center = (left + width/2) / 1920</li>
+                <li class="left">y_center = (bottom + height/2) / 1080</li>
+                <li class="left">width = width / 1920</li>
+                <li class="left">height = weight / 1080</li></b>
+            </ul>
+            <p class="left"><b>pm_code x_center y_center width height</b> 형태로 정규화를 진행하여 <b>총 26,671개</b> 데이터로 줄이고, json 파일을 txt 파일로 수정했습니다.</p>
+            <br>
+
+            <h4 class="left">2. 이미지 데이터</h4>
+            <table width=100%>
+                <tr>
+                    <td><img src="../static/images/web_img/origin.jpg" width=100% style="max-width: 600px;"></td>
+                    <td><img src="../static/images/web_img/640.jpg" width=100% style="max-width: 600px;"></td>
+                </tr>
+                <tr>
+                    <td><b>[사진3] 해상도 전처리 전 jpg 이미지 (1920*1080)</b></td>
+                    <td><b>[사진4] 해상도 전처리 후 jpg 이미지 (640*640)</b><td>
+                </tr>
+            </table>
+            <br>
+            <p class="left">라벨링 전처리가 완료된 데이터의 video_id에 해당하는 이미지 파일만 추출하고, 학습 진행시 속도 향상을 위해 기본 이미지 데이터 해상도를 <b>1920*1080</b>에서 <b>640*640</b>으로 줄였습니다.</p>
+            <p class="left">총 26,671개의 이미지 데이터와 라벨 데이터를 모델 학습, 검증, 테스트를 위해 각 각 21,336개, 4,001개 1,334개로 나눴습니다. </p>
+            <br>
+
+            <!--             토글 사용 -->
+            <details>
+                <summary class="togle left">3. EDA</summary>
+                <hr>
+                <table width=100%>
+                    <tr>
+                        <td><img src="../static/images/web_img/eda1.png" width=100% style="max-width: 600px;"></td>
+                        <td><img src="../static/images/web_img/eda2.png" width=100% style="max-width: 600px;" ></td>
+                    </tr>
+                    <tr>
+                        <td><b>[사진5]</b></td>
+                        <td><b>[사진6]</b><td>
+                    </tr>
+                </table>
+                <br>
+                <p class="left">정상과 나머지 위반의 비율이 <b>28:72</b> 인 것으로 위반 행위가 비중이 높은 것을 확인할 수 있습니다.</p>
+                <br>
+
+                <table width=100%>
+                    <tr>
+                        <td><img src="../static/images/web_img/eda3.png" width=100% style="max-width: 600px;"></td>
+                        <td><img src="../static/images/web_img/eda4.png" width=100% style="max-width: 600px;"></td>
+                        <td><img src="../static/images/web_img/eda5.png" width=100% style="max-width: 600px;"></td>
+                    </tr>
+                    <tr>
+                        <td><b>[사진7]</b></td>
+                        <td><b>[사진8]</b></td>
+                        <td><b>[사진9]</b></td>
+                    </tr>
+                </table>
+                <br>
+                <p class="left">time, weather, is_script 별 분포가 각 각 <b>83:17</b>, <b>93:7</b>, <b>77:23</b> 인 것을 확인할 수 있습니다.</p>
+                <br>
+
+                <table width=100%>
+                    <tr>
+                        <td><img src="../static/images/web_img/eda6.png" width=100% style="max-width: 600px;"></td>
+                        <td><img src="../static/images/web_img/eda7.png" width=100% style="max-width: 600px;"></td>
+                        <td><img src="../static/images/web_img/eda8.png" width=100% style="max-width: 600px;"></td>
+                    </tr>
+                    <tr>
+                        <td><b>[사진8]</b></td>
+                        <td><b>[사진9]</b></td>
+                        <td><b>[사진10]</b></td>
+                    </tr>
+                </table>
+                <br>
+                <p class="left">밤에는 <b>정지선 위반보다 신호 위반</b>이 더 많은 것을 볼 수 있습니다.
+                    또한, <b>낮보다 보행자 도로 통행 위반이 많이 낮은 것</b>을 확인할 수 있는데, 이는 밤에 차들이 많이 없어서 차도로로 다니는 것으로 추측됩니다.
+                    <b>밤에 연출 사진은 아예 없는 것</b>을 확인할 수 있는데, 이는 <b>night 데이터가 비교적 적은 원인</b>으로 볼 수 있습니다.
+                </p>
+                <br>
+
+                <table width=100%>
+                    <tr>
+                        <td><img src="../static/images/web_img/eda9.png" width=100% style="max-width: 600px;"></td>
+                        <td><img src="../static/images/web_img/eda10.png" width=100% style="max-width: 600px;"></td>
+                        <td><img src="../static/images/web_img/eda11.png" width=100% style="max-width: 600px;"></td>
+                    </tr>
+                    <tr>
+                        <td><b>[사진11]</b></td>
+                        <td><b>[사진12]</b></td>
+                        <td><b>[사진13]</b></td>
+                    </tr>
+                </table>
+
+                <br>
+                <p class="left">비가 오는 날에는 사람들이 주의를 하기 때문에 <b>전체적으로 사고 비율이 낮은 것</b>으로 볼 수 있습니다.
+                    비가 오는 날에는 <b>보행자 도로 통행 위반 비율은 비교적 낮고 신호와 정지선 위반의 비율이 크게 높은 것</b>을 확인할 수 있습니다.
+                    비가 오는 날, 낮과 밤에 위반 비율이 약 <b>92:8</b> 인 것을 확인할 수 있습니다.
+                    이는 비가 오는날 밤에는 사고 위험이 높아서 <b>위반 행위를 잘 하지 않고</b>, 비가 오는 날의 <b>연출 사진 또한 굉장히 작은 것을 원인</b>으로 볼 수 있습니다.
+                </p>
+
+                <table width=100%>
+                    <tr>
+                        <td><img src="../static/images/web_img/eda12.png" width=100% style="max-width: 600px;"></td>
+                        <td><img src="../static/images/web_img/eda13.png" width=100% style="max-width: 600px;"></td>
+                    </tr>
+                    <tr>
+                        <td><b>[사진14]</b></td>
+                        <td><b>[사진15]</b></td>
+                    </tr>
+                </table>
+
+                <br>
+                <p class="left">연출 이미지 중 보행자 도로 통행 위반 연출이 특히 많은데,
+                    시민들의 안전을 확보해야하는 보행자 도로에서 사고가 나는 것을 방지하기 위해 연출 사진이 많은 것으로 추측됩니다.
+                    비가 오는 날의 연출 사진의 비율은 98:2로 현저히 낮은 것을 볼 수 있습니다.
+                </p>
+            </details>
+             <br>
+
+            <h2>YOLO</h2>
+            <h3><b>v5s</b> - <b>v5m</b> - <b>8s</b> 비교</h3>
+            <hr>
+            <p class="left"><b>훈련 조건</b></p>
+            <p class="left">640*640 jpg 이미지 파일, 정규화 진행된 txt 라벨링 파일</p>
+            <p class="left">Train, Val, Test 데이터 개수: 21,336개, 4,001개, 1,334개</p>
+            <p class="left">batch_size: 16</p>
+            <p class="left">epochs: 10</p>
+            <img src="../static/images/web_img/score_table1.png" width=50% style="min-width: 600px;">
+            <p><b>[표3] 모델별 성능 비교표</b></p>
+            <p class="left">같은 학습 조건으로 진행 결과 3가지 모델 중 가장 성능이 좋은 <b>YOLOv8s 모델</b>을 메인 모델로 설정했습니다.
+                하지만 모든 모델에서 <b>class_19(횡단보도 주행 위반)</b>의 mAP50 성능이 좋지 않은 것을 볼 수 있습니다.
+                class_19 <b>데이터 개수가 작은 것을 원인</b>으로 꼽았습니다.
+                만약 <b>class_19의 성능을 높인다면 모델의 성능이 대폭 상승할 것으로 기대</b>했습니다.
+                모델 성능 향상을 위해 class_19의 <b>여러 가지 이미지 증강 기법을 적용</b>하고,
+                테스트를 진행하여 높은 성능을 보이는 이미지 증강 기법을 <b>원본 데이터에 추가하여 모델 재학습</b>을 진행했습니다.
+            </p>
+            <br>
+
+            <h2>class_19 이미지 증강 적용 후 YOLOv8s 성능 비교</h2>
+            <hr>
+            <table width=100%>
+                <tr>
+                    <td><img src="../static/images/web_img/origin.jpg" width=100% style="max-width: 600px;"></td>
+                    <td><img src="../static/images/web_img/640.jpg" width=100% style="max-width: 600px;"></td>
+                    <td><img src="../static/images/web_img/binary.jpg" width=100% style="max-width: 600px;"></td>
+                </tr>
+                <tr>
+                    <td><b>[사진14] 1920*1080 원본 이미지</b></td>
+                    <td><b>[사진15] 640*640 이미지</b></td>
+                    <td><b>[사진16] 640*640 이진화 이미지</b></td>
+                </tr>
+                <tr>
+                    <td><img src="../static/images/web_img/black.jpg" width=100% style="max-width: 600px;"></td>
+                    <td><img src="../static/images/web_img/blur.jpg" width=100% style="max-width: 600px;"></td>
+                    <td><img src="../static/images/web_img/embossed.jpg" width=100% style="max-width: 600px;"></td>
+                </tr>
+                <tr>
+                    <td><b>[사진17] 640*640 흑백 이미지</b></td>
+                    <td><b>[사진18] 640*640 블러 이미지</b></td>
+                    <td><b>[사진19] 640*640 엠보싱 이미지</b></td>
+                </tr><tr>
+                    <td><img src="../static/images/web_img/flip.jpg" width=100% style="max-width: 600px;"></td>
+                    <td><img src="../static/images/web_img/rotated90.jpg" width=100% style="max-width: 600px;"></td>
+                </tr>
+                <tr>
+                    <td><b>[사진20] 640*640 좌우반전 이미지</b></td>
+                    <td><b>[사진21] 640*640 90도 회전 이미지</b></td>
+                </tr>
+            </table>
+            <br>
+
+            <img src="../static/images/web_img/score_table2.png" width=50% style="min-width: 700px;">
+            <p><b>[표4] 증강 기법별 성능 비교표</b></p>
+            <br>
+            <p class="left">[사진15] 640*640 이미지 총 21,336개의 데이터에 class19만 이미지 증강을 적용하여 <b>각 21,615개의 데이터로 학습 진행 결과</b>입니다.
+                기존 class19의 mAP50 지표는 <b>0.158</b>과 비교했습니다.</p>
+            <p class="left">이진화 기법과 블러 기법은 <b>0.1</b>, <b>0.128</b>로 각 각 성능이 떨어진 모습을 보이고,
+                엠보싱, 좌우반전, 90도 회전, 흑백 기법은 <b>0.185</b>, <b>0.187</b>, <b>0.173</b>, <b>0.168</b>로 성능이 향상된 것을 확인할 수 있습니다.</p>
         </div>
-        
-        <div class="container">
-            <p>if button need</p>
-            <a href="/"><button type="button" class="btn btn-outline-dark">button</button></a>
-            <a href="/"><button type="button" class="btn btn-outline-dark">button</button></a>
-        </div>
+        <hr>
     </main>
 </body>
 

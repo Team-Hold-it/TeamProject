@@ -9,20 +9,69 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
         rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
         crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <title>Stop!</title>
     <style>
+        body {
+            background-image: url(../static/images/web_img/background2.png);
+            width: 100%;
+            height: 100%;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+            margin-bottom: 5%;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+        main {
+            margin-top: 108px;
+            min-width: 600px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .navbar-expand-lg {
+            position: fixed;
+            top: 0px;
+            width: 100%;
+        }
         .container-fluid {
             padding: 10px;
+            box-shadow: 0px 2px 5px -1px gray;
         }
-        .navbar {
-            background-color: $blue-400;
+        .container {
+            text-align: center;
+
+        }
+        .blue-strong {
+            font-weight: bold;
+            color: #003382;
+        }
+        .menu-font {
+            font-weight: bold;
+        }
+        .lead {
+            text-align: left;
+        }
+        .left {
+            text-align: left;
+        }
+        .togle {
+            font-size: 24px;
+        }
+        footer {
+            width: 100%;
+            height: 60px;
+            bottom: 0;
+            left: 0;
         }
     </style>
 </head>
 
 <body>
-    <nav class="navbar-expand-lg bg-light">
+    <nav class="navbar-expand-lg bg-light menu-font">
       <div class="container-fluid">
         <ul class="nav nav-pills">
           <li class="nav-item">
@@ -47,22 +96,30 @@
       </div>
     </nav>
 
-    <main class="flex-shrink-0">
+    <main>
         <div class="container">
-            <h1 class="mt-5">Project introduce</h1>
+            <h1>프로젝트 멈춰!</h1>
             <hr>
-            <p class="lead"><strong style="font-weight: bold; color: #003382;">strong</strong> and <strong style="font-weight: bold; color: #003382;">strong</strong> contents</p>
+            <p class="lead">최근 몇 년간 개인형 이동장치의 사용량이 급격히 증가하면서, 도로에서 발생하는 교통사고의 주요 원인 중 하나인 <strong class="blue-strong">개인형 이동장치의 위법 행위</strong>가 두드러지게 나타나고 있습니다.</p>
+            <p class="lead">그러나 현재까지의 적발 사례 수는 <strong class="blue-strong">상대적으로 낮은 수준</strong>에 그치고 있습니다.
+                이는 위법 행위를 적발하는 인력의 한계와 감시 시스템의 제한성 등이 원인으로 지적 됩니다.
+                따라서 저희는 이러한 문제를 해결하고자 교통법규 위반을 탐지하는 <strong class="blue-strong">프로젝트 멈춰!</strong>를 추진하게 되었습니다.
+            </p>
+            <p class="lead">프로젝트의 주요 목표는 개인형 이동장치 중 오토바이에 초점을 두어 <strong class="blue-strong">교통법규 위반 행위를 실기간으로 탐지</strong>하는 모델을 개발하는 것입니다.
+                이를 통해 사람의 제한된 감시 능력에 의지하는 것이 아닌 컴퓨터 비전과 인공지능 기술을 활용하여 위반 사례를 신속하고 정확하게 인식할 것으로 기대하고, 해당 프로젝트를 통해 <strong class="blue-strong">교통사고로 이어지는 위반을 예방하는 것을 목적</strong>으로 합니다.
+                또한, 특정 지역의 <strong class="blue-strong">위반 건수 확인을 자동화</strong>해서 <strong class="blue-strong">단속 인력 배치에 도움</strong>이 되는 시스템을 개발하는 것이 최종 목표입니다.
+            </p>
             <br>
-            <p>select</p>
+            <h2>팀원 소개</h2>
             <hr>
+            <p class="left"><b>김동현</b> 팀장: </p>
+            <p class="left"><b>김상현</b> 팀원: </p>
+            <p class="left"><b>김영훈</b> 팀원: </p>
+
         </div>
-        
-        <div class="container">
-            <p>if button need</p>
-            <a href="/"><button type="button" class="btn btn-outline-dark">button</button></a>
-            <a href="/"><button type="button" class="btn btn-outline-dark">button</button></a>
-        </div>
+
     </main>
+
 </body>
 
 </html>

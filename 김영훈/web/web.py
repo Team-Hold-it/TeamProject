@@ -46,7 +46,7 @@ def remind():
     return render_template('6_remind.html'), 200
 
 # service-predict page
-@app.route('/predict', methods=['GET','POST'])
+@app.route('/service/predict', methods=['GET','POST'])
 def detect():
     if request.method == 'POST':
         # 오류방지를 위해 미리 설정
@@ -70,10 +70,12 @@ def detect():
 
             # YOLOv8 예측
             # model = YOLO('yolov8s.pt')
-            model = YOLO(path + 'test_weight.pt') # 가중치 best.pt 경로
-            result = model.predict(source=img_path + + '/' +filename,
+            model = YOLO(path + '/web/test_weight.pt') # 가중치 best.pt 경로
+            result = model.predict(source=img_path + '/' + filename,
                                    conf=0.25,
                                    save=True) # v8_predict_path 에 저장됨
+            for i in result:
+                print(i.boxes.xywh)
 
             # predict 함수에 저장 경로 수정 파라미터가 없어서 따로 코드로 옮기기
             shutil.move(v8_predict_path + '/predict/' + filename, predict_path + '/predict/' + filename)
