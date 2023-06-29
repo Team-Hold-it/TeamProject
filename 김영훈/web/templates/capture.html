@@ -43,7 +43,13 @@
         }
         .container {
             text-align: center;
-
+        }
+        .container-button {
+          display: flex;
+          flex-direction: column;
+          align-items: center; /* 가운데로 정렬 */
+          justify-content: center; /* 가운데로 정렬 */
+          gap: 10px; /* 버튼과 드롭다운 박스 사이의 간격을 조정할 수 있습니다. 필요에 따라 변경할 수 있습니다. */
         }
         .blue-strong {
             font-weight: bold;
@@ -90,34 +96,54 @@
             <a class="nav-link" href="/cctv">cctv</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/capture">capture</a>
+            <a class="nav-link active" href="/capture">capture</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="/service">Service</a>
+            <a class="nav-link" href="/service">Service</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/remind">Remind</a>
           </li>
         </ul>
       </div>
+
     </nav>
 
     <main class="flex-shrink-0">
-        <div class="container">
-            <h1 class="mt-5">CCTV 이미지 탐지</h1>
-            <hr>
-            <p class="lead"><strong style="font-weight: bold; color: #003382;">CCTV 이미지 탐지 </strong>서비스 입니다.</p>
-            <hr>
-        </div>
-        <div class="container">
-        <form action='/service/predict' method="POST" enctype="multipart/form-data">
-            <input type="file" name="img" />
-            <input type="submit"/>
-        </form>
-        <div id="message"></div>
-        <div id="result"></div>
-        </div>
-    </main>
+      <div class="container">
+          <h1 class="mt-5">CCTV 동영상 이미지 변환</h1>
+          <hr>
+          <p class="lead"><strong style="font-weight: bold; color: #003382;">CCTV 동영상</strong>을<strong style="font-weight: bold; color: #003382;"></strong> 이미지</strong>로 변환하는 서비스 입니다.</p>
+          <hr>
+      </div>
+  
+      <div class="container">
+          <form action='/capture' method="POST" enctype="multipart/form-data">
+              <input type="file" name="file" />
+              <input type="submit"/>
+          </form>
+      </div>
+  
+      <div class="container">
+          <!-- Flash messages -->
+          {% with messages = get_flashed_messages() %}
+              {% if messages %}
+                  <div class="alert alert-success">
+                      {{ messages[0] }}
+                  </div>
+                  <!-- Download button -->
+                  <a id="download-button" href="/capture_download" class="btn btn-primary" disabled>캡처 파일 다운로드</a>
+              {% endif %}
+          {% endwith %}
+      </div>
+  
+      <script>
+          // Activate download button if there is a flash message
+          const flashMessage = "{{ get_flashed_messages()|length > 0 }}";
+          if (flashMessage === "True") {
+              document.getElementById("download-button").disabled = false;
+          }
+      </script>
+    </main>  
 </body>
-
 </html>
