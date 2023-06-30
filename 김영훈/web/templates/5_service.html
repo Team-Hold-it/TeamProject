@@ -71,7 +71,7 @@
 </head>
 
 <body>
-    <nav class="navbar-expand-lg bg-light">
+    <nav class="navbar-expand-lg bg-light menu-font">
       <div class="container-fluid">
         <ul class="nav nav-pills">
           <li class="nav-item">
@@ -87,6 +87,12 @@
             <a class="nav-link" href="/develop">Model develop</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="/cctv">cctv</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/capture">capture</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link active" href="/service">Service</a>
           </li>
           <li class="nav-item">
@@ -98,19 +104,18 @@
 
     <main class="flex-shrink-0">
         <div class="container">
-            <h1 class="mt-5">Servcie</h1>
+            <h1 class="mt-5">CCTV 이미지 탐지</h1>
             <hr>
-            <p class="lead"><strong style="font-weight: bold; color: #003382;">strong</strong> and <strong style="font-weight: bold; color: #003382;">strong</strong> contents</p>
-            <br>
-            <p>select</p>
+            <p class="lead"><strong style="font-weight: bold; color: #003382;">CCTV 이미지 탐지 </strong>서비스 입니다.</p>
             <hr>
         </div>
-        
         <div class="container">
-            <form action='/service/predict' method="POST" enctype="multipart/form-data">
-                <input type="file" name="img" />
-                <input type="submit"/>
-            </form>
+        <form action='/service/predict' method="POST" enctype="multipart/form-data">
+            <input type="file" name="img" />
+            <input type="submit"/>
+        </form>
+        <div id="message"></div>
+        <div id="result"></div>
         </div>
     </main>
 </body>

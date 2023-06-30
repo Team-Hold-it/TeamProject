@@ -71,7 +71,7 @@
 </head>
 
 <body>
-    <nav class="navbar-expand-lg bg-light">
+    <nav class="navbar-expand-lg bg-light menu-font">
       <div class="container-fluid">
         <ul class="nav nav-pills">
           <li class="nav-item">
@@ -85,6 +85,12 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/develop">Model develop</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/cctv">cctv</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/capture">capture</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/service">Service</a>
@@ -144,6 +150,14 @@
             <img src="../static/images/web_img/yolov8_structure.png" width=90%>
             <br>
             <br>
+            <h4 class="left">YOLOv5와 달라진 점 5가지</h4>
+            <p class="left">1. C3 module 에서 <b>C2f module로 변경</b>되었습니다.</p>
+            <p class="left">2. backbone의 6x6 convolution layer가 <b>3x3 convolution layer로 변경</b>되었습니다.</p>
+            <p class="left">3. YOLOv5에 존재하던 <b>2개의 convolution layer 2개를 제거</b>했습니다. </p>
+            <p class="left">4. Bottleneck에 있는 1x1 convolution layer가 <b>3x3 convolution layer로 변경</b>되었습니다.</p>
+            <p class="left">5. <b>objectness branch를 제거</b>하고, <b>decoupled head를 사용</b>했습니다.</p>
+            <br>
+            <br>
 
             <h2>출처</h2>
             <hr>
@@ -151,6 +165,7 @@
             <p><a href='https://brunch.co.kr/@aischool/11'>https://brunch.co.kr/@aischool/11</a></p>
             <p><a href="https://velog.io/@qtly_u/n4ptcz54">https://velog.io/@qtly_u/n4ptcz54</a></p>
             <p><a href="https://www.thedatahunt.com/trend-insight/guide-for-yolo-object-detection">https://www.thedatahunt.com/trend-insight/guide-for-yolo-object-detection</a></p>
+            <p><a href="https://github.com/ultralytics/ultralytics/issues/189">https://github.com/ultralytics/ultralytics/issues/189</a></p>
             <hr>
 
         </div>

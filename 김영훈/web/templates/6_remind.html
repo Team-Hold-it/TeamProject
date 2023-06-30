@@ -11,7 +11,7 @@
         crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <title>Stop!</title>
     <style>
@@ -23,10 +23,14 @@
             background-position: center;
             background-attachment: fixed;
             margin-bottom: 5%;
-            font-family: 'Gowun Batang';
+            font-family: 'Noto Sans KR', sans-serif;
         }
         main {
             margin-top: 108px;
+            min-width: 600px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
         .navbar-expand-lg {
             position: fixed;
@@ -66,7 +70,7 @@
 </head>
 
 <body>
-    <nav class="navbar-expand-lg bg-light">
+    <nav class="navbar-expand-lg bg-light menu-font">
       <div class="container-fluid">
         <ul class="nav nav-pills">
           <li class="nav-item">
@@ -82,6 +86,12 @@
             <a class="nav-link" href="/develop">Model develop</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="/cctv">cctv</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/capture">capture</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="/service">Service</a>
           </li>
           <li class="nav-item">
@@ -95,17 +105,57 @@
         <div class="container">
             <h1 class="mt-5">Remind</h1>
             <hr>
-            <p class="lead"><strong style="font-weight: bold; color: #003382;">strong</strong> and <strong style="font-weight: bold; color: #003382;">strong</strong> contents</p>
+
+            <h3 class="left">Keep</h3>
+            <p class="lead"><span>&#8226;</span>
+                데이터 셋의 질이 하이퍼파라미터 튜닝보다 모델의 성능에 더 큰 영향을 미친다는 것을 알게 되었습니다.
+                또한 데이터 셋의 다양성과 품질은 모델 학습과 일반화 능력에 매우 중요한 역할을 한다는 것을 깨달았습니다.
+            </p>
+            <p class="lead"><span>&#8226;</span>
+                데이터 전처리 기술과 객체 탐지 알고리즘의 원리와 응용에 대해 배워 이해도를 높일 수 있었습니다.
+                더 나아가, 실제 산업 현장에서의 적용 가능성과 한계를 이해하는 기회를 얻을 수 있었고,
+                이러한 경험들을 바탕으로 데이터 과학 분야에서의 실무 역량을 키우는 데에 큰 도움이 되었습니다.
+            </p>
+            <p class="lead"><span>&#8226;</span>
+                API활용에 대한 지식을 얻었고, 웹 서비스를 개발하고 배포하는 데 필요한 역량을 키울 수 있었습니다.
+            </p>
+            <p class="lead"><span>&#8226;</span>
+                프로젝트 진행하면서 팀원들과의 협업과 커뮤니케이션의 중요성을 깨달았습니다.
+                팀원들과 원활한 의사소통을 통해 문제를 해결하고 아이디어를 공유함으로써 프로젝트의 진행 속도와 품질을 향상시킬 수 있었습니다.
+            </p>
             <br>
-            <p>select</p>
-            <hr>
+
+
+            <h3 class="left">Problem</h3>
+            <p class="lead"><span>&#8226;</span>
+                하이퍼파라미터 튜닝하는 데에 있어 체계적으로 진행하지 못하고 랜덤하게 진행한 점이 아쉬웠습니다.
+                또한, 한번 학습을 진행하는데에 너무 오랜 시간이 걸려서 많은 실험을 해보지 못했던 것이 아쉬웠습니다.
+                만약 사양이 좋은 환경에서 수행한다면 더 좋은 하이퍼파라미터 조합을 발견했을 것 같습니다.
+            </p>
+            <p class="lead"><span>&#8226;</span>
+                데이터 크기가 커서 다루기 쉽지 않았습니다.
+            </p>
+            <p class="lead"><span>&#8226;</span>
+                웹 서버에 대한 지식이 부족해서 버그가 많았습니다.
+            </p>
+            <br>
+
+
+            <h3 class="left">Try</h3>
+            <p class="lead"><span>&#8226;</span>
+                모델 성능 개선을 위해 하이퍼파라미터 튜닝보다는 데이터 셋 품질 개선에 더욱 노력할 것입니다.
+            </p>
+            <p class="lead"><span>&#8226;</span>
+                하이퍼파라미터 각 각이 어떻게 영향을 미치는 지 알기 위해 세부적인 가설을 세워 하나씩 해결해 나가면 좋을 것 같습니다.
+            </p>
+            <p class="lead"><span>&#8226;</span>
+                웹 서버에 대한 버그의 주요 원인은 웹 서버와 로컬 개발 환경에 차이에서 비롯된 부분이 많았습니다.
+                따라서, 웹 서버와 개발에 대한 추가적인 공부의 필요성을 느꼈습니다.
+            </p>
+
+
         </div>
-        
-        <div class="container">
-            <p>if button need</p>
-            <a href="/"><button type="button" class="btn btn-outline-dark">button</button></a>
-            <a href="/"><button type="button" class="btn btn-outline-dark">button</button></a>
-        </div>
+
     </main>
 </body>
 

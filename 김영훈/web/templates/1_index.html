@@ -43,7 +43,6 @@
         }
         .container {
             text-align: center;
-
         }
         .blue-strong {
             font-weight: bold;
@@ -72,29 +71,34 @@
 
 <body>
     <nav class="navbar-expand-lg bg-light">
-      <div class="container-fluid menu-font">
-        <ul class="nav nav-pills">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/pjintro">Project intro</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/mdintro">Model intro</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/develop">Model develop</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/service">Service</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/remind">Remind</a>
-          </li>
-        </ul>
-      </div>
-
+        <div class="container-fluid menu-font">
+            <ul class="nav nav-pills">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/pjintro">Project intro</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/mdintro">Model intro</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/develop">Model develop</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/cctv">cctv</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/capture">capture</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/service">Service</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/remind">Remind</a>
+                </li>
+            </ul>
+        </div>
     </nav>
 
     <main>
@@ -107,8 +111,9 @@
 
         <div class="container">
             <p class="menu-font">서비스 이용하기</p>
-            <a href="#"><button type="button" class="btn btn-outline-dark">실시간 cctv 탐지하기</button></a>
-            <a href="#"><button type="button" class="btn btn-outline-dark">실시간 cctv 다운받기</button></a>
+            <a href="/cctv"><button type="button" class="btn btn-outline-dark">실시간 CCTV 다운로드</button></a>
+            <a href="/capture"><button type="button" class="btn btn-outline-dark">CCTV 이미지 캡쳐하기</button></a>
+            <a href="/service"><button type="button" class="btn btn-outline-dark">CCTV 이미지 탐지하기</button></a>
         </div>
     </main>
 </body>

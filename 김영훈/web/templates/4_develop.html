@@ -78,7 +78,7 @@
 </head>
 
 <body>
-    <nav class="navbar-expand-lg bg-light">
+    <nav class="navbar-expand-lg bg-light menu-font">
       <div class="container-fluid">
         <ul class="nav nav-pills">
           <li class="nav-item">
@@ -92,6 +92,12 @@
           </li>
           <li class="nav-item">
             <a class="nav-link active" href="/develop">Model develop</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/cctv">cctv</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/capture">capture</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/service">Service</a>
@@ -114,6 +120,8 @@
 
             <h2>데이터 소개 및 전처리</h2>
             <hr>
+
+            <p class="left">본 데이터는 <a href="https://aihub.or.kr/aihubdata/data/view.do?currMenu=115&topMenu=100&dataSetSn=614">AI-Hub</a>에서 개인형 이동장치 안전 데이터의 Validation 데이터만 다운로드하여 사용했습니다.</p>
 
             <h4 class="left">1. 라벨링 데이터</h4>
             <br>
@@ -268,7 +276,8 @@
             <p class="left">Train, Val, Test 데이터 개수: 21,336개, 4,001개, 1,334개</p>
             <p class="left">batch_size: 16</p>
             <p class="left">epochs: 10</p>
-            <p class="left">Google Colab으로 학습 진행</p>
+            <p class="left">local 환경 : Python-3.8.16 torch-1.7.1+cu101 CUDA:0 (NVIDIA GeForce RTX 2060, 6144MiB)</p>
+            <p class="left">Google Colab, Kaggle, local 환경으로 진행</p>
             <img src="../static/images/web_img/score_table1.png" width=50% style="min-width: 600px;">
             <p><b>[표3] 모델별 성능 비교표</b></p>
             <p class="left">같은 학습 조건으로 진행 결과 3가지 모델 중 가장 성능이 좋은 <b>YOLOv8s 모델</b>을 메인 모델로 설정했습니다.
@@ -494,7 +503,52 @@
                 class16 데이터에 임베딩 기법을 사용한 전처리 이미지가 있기 때문에 class16의 성능이 높아 total mAP50도 비교적 높은 것으로 판단했습니다.
                 따라서 저희는 <b>AdamW</b>와 <b>Adamax</b>의 optimizer로 성능을 올리는 시도를 했습니다. (tensorflow 공식문서 참고)
             </p>
+            <img src="../static/images/web_img/score_table4.png" width=80% style="min-width: 200px;">
+            <p><b>[표8] 하이퍼파라미터 성능 비교표</b></p>
+            <p class="left">
+                하이퍼파라미터 조합 경우의 수가 많고, 제한적인 개발 환경으로 인해 <b>하이퍼파라미터 같은 경우에는 랜덤으로 일부분에만 숫자를 기입</b>하여 진행했습니다.
+                최종 모델을 진행 결과 성능이 가장 높게 나온, <b>Default 값으로 진행한 Adamax로 결정</b>하게 되었습니다.
+            </p>
+            <br>
+            <h3 class="left">최종 모델에 대한 성능 그래프</h3>
+            <img src="../static/images/web_img/f1score.png" width=80% style="min-width: 200px;">
+            <p><b>[사진22] 최종 모델 F1_Score</b></p>
+            <p class="left">
+                가장 높은 f1_score를 보인 클래스는 <b>class14</b>와 <b>class18</b>인 것을 확인할 수 있습니다.
+                <b>class16이 가장 낮게</b> 나왔는데, 만약 이를 개선한다면 평균적으로 높은 성능의 모델을 기대할 수 있을 것입니다.
+            </p>
 
+            <img src="../static/images/web_img/precision.png" width=80% style="max-width: 600px;">
+            <p><b>[사진23] 최종 모델 Precision</b></p>
+            <img src="../static/images/web_img/recall.png" width=80% style="max-width: 600px;">
+            <p><b>[사진24] 최종 모델 Recall</b></p>
+            <img src="../static/images/web_img/map50.png" width=80% style="max-width: 600px;">
+            <p><b>[사진25] 최종 모델 mAP50</b></p>
+            <p class="left">
+                20epochs를 진행하는 동안의 최종 모델의 성능을 보면 점점 증가하는 것을 볼 수 있습니다.
+            </p>
+
+            <img src="../static/images/web_img/train_box_loss.png" width=80% style="max-width: 600px;">
+            <p><b>[사진26] 최종 모델 train_box_loss</b></p>
+            <img src="../static/images/web_img/train_cls_loss.png" width=80% style="max-width: 600px;">
+            <p><b>[사진27] 최종 모델 train_cls_loss</b></p>
+            <img src="../static/images/web_img/train_dfl_loss.png" width=80% style="max-width: 600px;">
+            <p><b>[사진28] 최종 모델 train_dfl_loss</b></p>
+            <p class="left">
+                학습을 진행하는 동안 train_loss값이 모두 점점 줄어드는 것을 볼 수 있습니다.
+            </p>
+
+            <img src="../static/images/web_img/val_box_loss.png" width=80% style="max-width: 600px;">
+            <p><b>[사진26] 최종 모델 val_box_loss</b></p>
+            <img src="../static/images/web_img/val_cls_loss.png" width=80% style="max-width: 600px;">
+            <p><b>[사진27] 최종 모델 val_cls_loss</b></p>
+            <img src="../static/images/web_img/val_dfl_loss.png" width=80% style="max-width: 600px;">
+            <p><b>[사진28] 최종 모델 val_dfl_loss</b></p>
+            <p class="left">
+                학습을 진행하는 동안 val_loss값 또한 모두 점점 줄어드는 것을 볼 수 있습니다.
+                train과 val loss 값이 모두 줄어들고 있는 것을 보아 과적합은 일어나지 않았다고 판단했습니다.
+                따라서, <b>epochs를 늘린다면 더 좋은 성능의 모델이 될 것</b>으로 기대됩니다.
+            </p>
 
 
             <h2>출처</h2>
