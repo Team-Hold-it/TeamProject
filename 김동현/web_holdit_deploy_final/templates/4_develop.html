@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+        });
+    </script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+        rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+        crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Stop!</title>
+    <style>
+        body {
+            background-image: url(../static/images/web_img/background2.png);
+            width: 100%;
+            height: 100%;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+            margin-bottom: 5%;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+        main {
+            margin-top: 108px;
+            min-width: 600px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .navbar-expand-lg {
+            position: fixed;
+            top: 0px;
+            width: 100%;
+        }
+        .container-fluid {
+            padding: 10px;
+            box-shadow: 0px 5px 5px -1px gray;
+        }
+        .container {
+            text-align: center;
+
+        }
+        .blue-strong {
+            font-weight: bold;
+            color: #003382;
+        }
+        .menu-font {
+            font-weight: bold;
+        }
+        .lead {
+            text-align: left;
+        }
+        .left {
+            text-align: left;
+        }
+        .togle {
+            font-size: 24px;
+        }
+        footer {
+            width: 100%;
+            height: 60px;
+            bottom: 0;
+            left: 0;
+        }
+        .navbar-expand-lg {
+            background: url(../static/images/web_img/Road_1.jpg) repeat; /* 로컬 경로 /static/images/web_img/Road_1.jpg */
+        }
+        .nav-item a {
+            color: #ffffff;
+        }
+        .nav-pills {
+            display: flex;
+            justify-content: center;
+        }
+        .nav-pills .nav-link {
+            color: #f8f40d; /* 링크 텍스트 색상 */
+            padding: 10px 15px; /* 내부 여백 */
+            border-radius: 5px; /* 테두리 모서리의 둥글기 */
+            transition: background-color 0.3s ease; /* 호버 효과의 부드러운 전환 */
+        }
+        .nav-pills .nav-link:hover {
+            background-color: #1d6bfd73 /* 호버 시 배경색 변경 */
+        }
+        
+        .nav-pills .nav-link.active {
+            background-color: #1d6bfd; /* 선택한 항목의 배경색 */
+        }
+        ::-webkit-scrollbar {
+            display: none;
+        }
+        #sidebar {
+            position: fixed;
+            top: 20;
+            left: 0;
+            width: 20%;
+            height: 100%;
+            padding: 20px;
+            overflow: auto;
+        }
+        #sidebar p {
+            text-align: center; /* 왼쪽 정렬 */
+        }
+        
+        #sidebar a {
+            text-decoration: none; /* 링크 밑줄 제거 */
+            color: black; /* 링크 색상 설정, 필요에 따라 변경 가능 */
+        }
+        
+        #content {
+            margin-left: 0%; /* 사이드바 너비에 맞게 조정해야 합니다. */
+        }
+
+        .sidebar-button {
+            display: inline-block;
+            width: 70%; /* 버튼의 너비를 100%로 설정하여 모든 버튼이 동일한 크기를 가지게 합니다. */
+            text-align: left;
+            padding: 10px; /* 버튼 안의 텍스트와 버튼 테두리 사이의 공간 */
+            margin-bottom: 2px; /* 버튼 간 간격 */
+            background-color: #e7e7e7; /* 버튼 배경 색상 */
+            text-decoration: none; /* 밑줄 제거 */
+            color: black; /* 텍스트 색상 */
+            border-radius: 10px; /* 버튼 모서리 둥글게 */
+            box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3); /* 그림자 효과 추가 */
+        }
+        .sidebar-button.active, .sidebar-button:hover {
+            background-color: #808080; /* 마우스 오버 및 활성화 시 버튼 배경 색상 */
+            color: #fff; /* 마우스 오버 및 활성화 시 텍스트 색상 */
+            box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3); /* 그림자 효과 추가 */
+        }
+        
+    </style>
+</head>
+
+<body>
+    <nav class="navbar-expand-lg bg-light menu-font">
+      <div class="container-fluid">
+        <ul class="nav nav-pills">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/pjintro">Project intro</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/mdintro">Model intro</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="/develop">Model develop</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/cctv">cctv</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/capture">capture</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/service">Service</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/remind">Remind</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <main>
+        <div class="container">
+            <!-- 사이드바 부분 -->
+            <div id="sidebar">
+                <h3>목차</h3>
+                <hr>
+                <p><a class="sidebar-button" href="#00">1. Model 개발 과정</a></p>
+                <p><a class="sidebar-button" href="#01">2. 데이터 소개 및 전처리</a></p>
+                <p><a class="sidebar-button" href="#02">3. YOLO 모델 비교</a></p>
+                <p><a class="sidebar-button" href="#03">4. 이미지 증강 적용 후 성능 비교</a></p>
+                <p><a class="sidebar-button" href="#04">5. class 합친 후 성능 비교</a></p>
+                <p><a class="sidebar-button" href="#05">6. 최종모델성능</a></p>
+                <p><a class="sidebar-button" href="#06">7. 출처</a></p>
+            </div>
+            <script>
+                // 모든 'sidebar-button' 클래스를 가진 요소를 선택합니다.
+                var btns = document.getElementsByClassName("sidebar-button");
+            
+                // 각 버튼에 대하여 클릭 이벤트를 설정합니다.
+                for (var i = 0; i < btns.length; i++) {
+                    btns[i].addEventListener("click", function() {
+                        // 'active' 클래스를 가진 현재 활성화된 버튼을 찾습니다.
+                        var current = document.getElementsByClassName("active");
+                        
+                        // 만약 활성화된 버튼이 있다면 'active' 클래스를 제거합니다.
+                        if (current.length > 0) { 
+                            current[0].className = current[0].className.replace(" active", "");
+                        }
+            
+                        // 새로 클릭된 버튼에 'active' 클래스를 추가합니다.
+                        this.className += " active";
+                    });
+                }
+            </script>            
+
+            <!-- 본문 부분 -->
+            <div id="content">
+                <h1 id=00>모델 개발 과정</h1>
+            <hr>
+            <p class="lead">프로젝트 '멈춰'는 실시간으로 정확도 높은 검출이 요구되므로 <strong class="blue-strong">YOLO 모델</strong>을 선택하게 되었습니다.
+                YOLO 모델은 여러 버전이 있기 때문에 몇 가지 버전을 실험적으로 학습 한 후 최종 모델을 선정하였습니다.</p>
+            <p class="lead"></p>
+            <br>
+
+
+
+            <h2 id=01>데이터 소개 및 전처리</h2>
+            <hr>
+
+            <p class="left">본 데이터는 <a href="https://aihub.or.kr/aihubdata/data/view.do?currMenu=115&topMenu=100&dataSetSn=614">AI-Hub</a>에서 개인형 이동장치 안전 데이터의 Validation 데이터만 다운로드하여 사용했습니다.</p>
+
+            <h4 class="left">1. 라벨링 데이터</h4>
+            <br>
+            <table width=100%>
+                <tr>
+                    <td><img src="../static/images/web_img/annotation_table.png" width=100% style="max-width: 600px;"></td>
+                    <td><img src="../static/images/web_img/pm_table.png" width=100% style="max-width: 600px;"></td>
+                </tr>
+                <tr>
+                    <td><b>[표1] 어노테이션 표</b></td>
+                    <td><b>[표2] 라벨링 표</b></td>
+                </tr>
+            </table>
+            <br>
+
+            <table width=100%>
+                <tr>
+                    <td width=50%><img src="../static/images/web_img/json.png" width=100% style="max-width: 400px;"</td>
+                    <td width=50%><img src="../static/images/web_img/txt.png" width=100% style="max-width: 600px;">
+                </tr>
+                <tr>
+                    <td><b>[사진1] 전처리 전 json 파일</b></td>
+                    <td><b>[사진2] 전처리 후 txt 파일</b></td>
+                </tr>
+            </table>
+            <br>
+            <p class="left">프로젝트 목표에 맞게 <b>device 컬럼에서 CCTV</b> 정보와 <b>PM_code 컬럼에서 오토바이 위반 행위(pm code 13~19)</b>에 맞는 <b>video_id 컬럼을 추출</b>해서 해당 jpg 이미지와 라벨링 데이터를 저장했습니다.</p>
+            <p class="left">라벨링 데이터는 YOLO 학습 진행을 위해 <b>PM 항목에 PM_code 컬럼과 points 컬럼</b>을 통해 다음과 같이 진행했습니다.</p>
+            <ul style="list-style-type:decimal"><b>
+                <li class="left">pm_code = pm_code - 13</li>
+                <li class="left">x_center = (left + width/2) / 1920</li>
+                <li class="left">y_center = (bottom + height/2) / 1080</li>
+                <li class="left">width = width / 1920</li>
+                <li class="left">height = weight / 1080</li></b>
+            </ul>
+            <p class="left"><b>pm_code x_center y_center width height</b> 형태로 정규화를 진행하여 <b>총 26,671개</b> 데이터로 줄이고, json 파일을 txt 파일로 수정했습니다.</p>
+            <br>
+
+            <h4 class="left">2. 이미지 데이터</h4>
+            <table width=100%>
+                <tr>
+                    <td><img src="../static/images/web_img/origin.jpg" width=100% style="max-width: 600px;"></td>
+                    <td><img src="../static/images/web_img/640.jpg" width=100% style="max-width: 600px;"></td>
+                </tr>
+                <tr>
+                    <td><b>[사진3] 해상도 전처리 전 jpg 이미지 (1920*1080)</b></td>
+                    <td><b>[사진4] 해상도 전처리 후 jpg 이미지 (640*640)</b><td>
+                </tr>
+            </table>
+            <br>
+            <p class="left">라벨링 전처리가 완료된 데이터의 video_id에 해당하는 이미지 파일만 추출하고, 학습 진행시 속도 향상을 위해 기본 이미지 데이터 해상도를 <b>1920*1080</b>에서 <b>640*640</b>으로 줄였습니다.</p>
+            <p class="left">총 26,671개의 이미지 데이터와 라벨 데이터를 모델 학습, 검증, 테스트를 위해 각각 21,336개, 4,001개 1,334개로 나눴습니다. </p>
+            <br>
+
+            <!--             토글 사용 -->
+            <details>
+                <summary class="togle left">3. EDA</summary>
+                <hr>
+                <table width=100%>
+                    <tr>
+                        <td><img src="../static/images/web_img/eda1.png" width=100% style="max-width: 600px;"></td>
+                        <td><img src="../static/images/web_img/eda2.png" width=100% style="max-width: 600px;" ></td>
+                    </tr>
+                    <tr>
+                        <td><b>[사진5]</b></td>
+                        <td><b>[사진6]</b><td>
+                    </tr>
+                </table>
+                <br>
+                <p class="left">정상과 나머지 위반의 비율이 <b>28:72</b> 인 것으로 위반 행위가 비중이 높은 것을 확인할 수 있습니다.</p>
+                <br>
+
+                <table width=100%>
+                    <tr>
+                        <td><img src="../static/images/web_img/eda3.png" width=100% style="max-width: 600px;"></td>
+                        <td><img src="../static/images/web_img/eda4.png" width=100% style="max-width: 600px;"></td>
+                        <td><img src="../static/images/web_img/eda5.png" width=100% style="max-width: 600px;"></td>
+                    </tr>
+                    <tr>
+                        <td><b>[사진7]</b></td>
+                        <td><b>[사진8]</b></td>
+                        <td><b>[사진9]</b></td>
+                    </tr>
+                </table>
+                <br>
+                <p class="left">time, weather, is_script 별 분포가 각 각 <b>83:17</b>, <b>93:7</b>, <b>77:23</b> 인 것을 확인할 수 있습니다.</p>
+                <br>
+
+                <table width=100%>
+                    <tr>
+                        <td><img src="../static/images/web_img/eda6.png" width=100% style="max-width: 600px;"></td>
+                        <td><img src="../static/images/web_img/eda7.png" width=100% style="max-width: 600px;"></td>
+                        <td><img src="../static/images/web_img/eda8.png" width=100% style="max-width: 600px;"></td>
+                    </tr>
+                    <tr>
+                        <td><b>[사진8]</b></td>
+                        <td><b>[사진9]</b></td>
+                        <td><b>[사진10]</b></td>
+                    </tr>
+                </table>
+                <br>
+                <p class="left">밤에는 <b>정지선 위반보다 신호 위반</b>이 더 많은 것을 볼 수 있습니다.
+                    또한, <b>낮보다 보행자 도로 통행 위반이 많이 낮은 것</b>을 확인할 수 있는데, 이는 밤에 차들이 많이 없어서 차도로로 다니는 것으로 추측됩니다.
+                    <b>밤에 연출 사진은 아예 없는 것</b>을 확인할 수 있는데, 이는 <b>night 데이터가 비교적 적은 원인</b>으로 볼 수 있습니다.
+                </p>
+                <br>
+
+                <table width=100%>
+                    <tr>
+                        <td><img src="../static/images/web_img/eda9.png" width=100% style="max-width: 600px;"></td>
+                        <td><img src="../static/images/web_img/eda10.png" width=100% style="max-width: 600px;"></td>
+                        <td><img src="../static/images/web_img/eda11.png" width=100% style="max-width: 600px;"></td>
+                    </tr>
+                    <tr>
+                        <td><b>[사진11]</b></td>
+                        <td><b>[사진12]</b></td>
+                        <td><b>[사진13]</b></td>
+                    </tr>
+                </table>
+
+                <br>
+                <p class="left">비가 오는 날에는 사람들이 주의를 하기 때문에 <b>전체적으로 사고 비율이 낮은 것</b>으로 볼 수 있습니다.
+                    비가 오는 날에는 <b>보행자 도로 통행 위반 비율은 비교적 낮고 신호와 정지선 위반의 비율이 크게 높은 것</b>을 확인할 수 있습니다.
+                    비가 오는 날, 낮과 밤에 위반 비율이 약 <b>92:8</b> 인 것을 확인할 수 있습니다.
+                    이는 비가 오는날 밤에는 사고 위험이 높아서 <b>위반 행위를 잘 하지 않고</b>, 비가 오는 날의 <b>연출 사진 또한 굉장히 작은 것을 원인</b>으로 볼 수 있습니다.
+                </p>
+
+                <table width=100%>
+                    <tr>
+                        <td><img src="../static/images/web_img/eda12.png" width=100% style="max-width: 600px;"></td>
+                        <td><img src="../static/images/web_img/eda13.png" width=100% style="max-width: 600px;"></td>
+                    </tr>
+                    <tr>
+                        <td><b>[사진14]</b></td>
+                        <td><b>[사진15]</b></td>
+                    </tr>
+                </table>
+
+                <br>
+                <p class="left">연출 이미지 중 보행자 도로 통행 위반 연출이 특히 많은데,
+                    시민들의 안전을 확보해야하는 보행자 도로에서 사고가 나는 것을 방지하기 위해 연출 사진이 많은 것으로 추측됩니다.
+                    비가 오는 날의 연출 사진의 비율은 98:2로 현저히 낮은 것을 볼 수 있습니다.
+                </p>
+            </details>
+             <br>
+
+            <h2 id=02>YOLO</h2>
+            <h3><b>v5s</b> - <b>v5m</b> - <b>8s</b> 비교</h3>
+            <hr>
+            <p class="left"><b>훈련 조건</b></p>
+            <p class="left">640*640 jpg 이미지 파일, 정규화 진행된 txt 라벨링 파일</p>
+            <p class="left">Train, Val, Test 데이터 개수: 21,336개, 4,001개, 1,334개</p>
+            <p class="left">batch_size: 16</p>
+            <p class="left">epochs: 10</p>
+            <p class="left">local 환경 : Python-3.8.16 torch-1.7.1+cu101 CUDA:0 (NVIDIA GeForce RTX 2060, 6144MiB)</p>
+            <p class="left">Google Colab, Kaggle, local 환경으로 진행</p>
+            <img src="../static/images/web_img/score_table1.png" width=50% style="min-width: 600px;">
+            <p><b>[표3] 모델별 성능 비교표</b></p>
+            <p class="left">3가지 모델을 같은 조건에서 학습하여 가장 성능이 좋은 <b>YOLOv8s</b>를 메인 모델로 선정했습니다.
+                그런데 모든 모델에서 <b>class_19(횡단보도 주행 위반)</b>의 mAP50 성능이 좋지 않았습니다.
+                따라서 <b>class_19의 성능을 높이면 모델의 종합적인 성능도 크게 개선될 수 </b>있다고 판단했습니다.
+                우선, class_19<b>의 데이터 개수가 적은 것이 낮은 성능의 원인</b>이라고 생각했습니다.
+                문제를 해결하기 위해 class_19에 <b>여러 가지 이미지 증강 기법을 적용</b>했습니다. 
+                그리고 결과를 비교해서 가장 좋은 성능의 이미지 증강 기법을 선정했습니다. 
+                이렇게 증강된 데이터를 <b>원본 데이터에 추가하여 모델 재학습</b>을 진행했습니다.
+            </p>
+            <br>
+
+            <h2 id=03>class_19 이미지 증강 적용 후 YOLOv8s 성능 비교</h2>
+            <hr>
+            <table width=100%>
+                <tr>
+                    <td><img src="../static/images/web_img/origin.jpg" width=100% style="max-width: 600px;"></td>
+                    <td><img src="../static/images/web_img/640.jpg" width=100% style="max-width: 600px;"></td>
+                    <td><img src="../static/images/web_img/binary.jpg" width=100% style="max-width: 600px;"></td>
+                </tr>
+                <tr>
+                    <td><b>[사진14] 1920*1080 원본 이미지</b></td>
+                    <td><b>[사진15] 640*640 이미지</b></td>
+                    <td><b>[사진16] 640*640 이진화 이미지</b></td>
+                </tr>
+                <tr>
+                    <td><img src="../static/images/web_img/black.jpg" width=100% style="max-width: 600px;"></td>
+                    <td><img src="../static/images/web_img/blur.jpg" width=100% style="max-width: 600px;"></td>
+                    <td><img src="../static/images/web_img/embossed.jpg" width=100% style="max-width: 600px;"></td>
+                </tr>
+                <tr>
+                    <td><b>[사진17] 640*640 흑백 이미지</b></td>
+                    <td><b>[사진18] 640*640 블러 이미지</b></td>
+                    <td><b>[사진19] 640*640 엠보싱 이미지</b></td>
+                </tr><tr>
+                    <td><img src="../static/images/web_img/flip.jpg" width=100% style="max-width: 600px;"></td>
+                    <td><img src="../static/images/web_img/rotated90.jpg" width=100% style="max-width: 600px;"></td>
+                </tr>
+                <tr>
+                    <td><b>[사진20] 640*640 좌우반전 이미지</b></td>
+                    <td><b>[사진21] 640*640 90도 회전 이미지</b></td>
+                </tr>
+            </table>
+            <br>
+
+            <img src="../static/images/web_img/score_table2.png" width=50% style="min-width: 700px;">
+            <p><b>[표4] 증강 기법별 성능 비교표</b></p>
+            <br>
+            <p class="left">[사진15] 640*640 이미지 총 21,336개의 데이터에 class19만 이미지 증강을 적용하여 <b>각 21,615개의 데이터로 학습 진행한 결과</b>입니다.
+                기존 class19의 mAP50 지표는 <b>0.158</b>과 비교했습니다.</p>
+            <p class="left">이진화 기법과 블러 기법은 <b>0.1</b>, <b>0.128</b>로 각 각 성능이 떨어진 모습을 보이고,
+                엠보싱, 좌우반전, 90도 회전, 흑백 기법은 <b>0.185</b>, <b>0.187</b>, <b>0.173</b>, <b>0.168</b>로 성능이 향상은 되었지만, 기대한만큼 상승되지 않았습니다.</p>
+            <p class="left">프로젝트의 원래 <b>목표가 위반 건수 확인을 자동화해서 단속 인력 배치에 도움이 되는 시스템</b>을 개발하는 것이기 때문에 <b>class16(무단횡당 위반)과 class19번(횡단보도 주행위반)이 유사하다고 판단하여 class를 합치기</b>로 결정했습니다.</p>
+            <br>
+
+
+            <h2 id=04>class 합친 후 YOLOv8s 성능 비교</h2>
+            <hr>
+            <img src="../static/images/web_img/score_table3.png" width=50% style="min-width: 600px;">
+            <p><b>[표5] class 합친 후 성능 비교표</b></p>
+            <br>
+            <p class="left">두 class를 합치고 class16에 대한 성능은 비교적 떨어졌지만, Total mAP50 성능은 향상된 것을 볼 수 있습니다. </p>
+            <p class="left">전처리 적용을 완료한 후, <b>성능 향상을 위해 하이퍼파라미터 수정</b>을 하기로 했습니다.</p>
+            <img src="../static/images/web_img/hyperparameter1.png" width=90% style="min-width: 650px;">
+            <p><b>[표6] 하이퍼파라미터 표</b></p>
+            <br>
+            <p class="left">기본적인 하이퍼파라미터 <b>epochs</b>, <b>patience</b>, <b>batch size</b>와
+                손실함수의 최소값을 찾기 위한 알고리즘인 <b>optimizer</b>,
+                이미지 증강에 도움을 줄 <b>scale</b>, <b>shear</b>, <b>perspective</b>, <b>flipup</b>, <b>fliplr</b>을 변경하며 최고의 성능을 찾는 과정을 진행했습니다.
+            </p>
+            <br>
+
+            <!--             토글 사용 -->
+            <details>
+                <summary class="togle left">Optimizer</summary>
+                <hr>
+                <img src="../static/images/web_img/optimizer1.png" width=50% style="min-width: 600px;">
+                <p><b>[사진22] Optimizer 발달 계보</b></p>
+                <p class="left"><b>경사하강법(GD)의 문제점</b></p>
+                <p class="left">- <b>한번 학습할 때 마다 모든 데이터셋을 이용한다</b>는 것입니다.
+                    손실함수의 최소값을 찾아 나가기 위해 모든 데이터를 다 사용하기 때문에 최소값을 찾는데에 오랜 시간이 걸리며 학습 시간 역시 오래 걸립니다.
+                </p>
+                <p class="left">- <b>학습률 정할 때</b>에도 문제가 존재합니다.
+                    학습률이 너무 크다면, 최소값에 수렵하지 못하고 loss 값이 계속 커지는 방향으로 진행될 수 있습니다.
+                    또는 아예 최소값에 제대로 수렴하지 못할 수도 있습니다.
+                    학습률이 너무 작다면, 최소값을 찾는데 오랜 시간이 걸립니다.
+                </p>
+                <p class="left">
+                    - 진짜 목표인 global minimum을 찾지 못하고 <b>local minimum</b>에 갖힐 위험이 존재합니다.
+                </p>
+                <p class="left">- 마지막으로, 모든 데이터를 한번에 다 학습하기 때문에 <b>메모리 한계</b>도 존재할 수 있습니다.</p>
+                <br>
+
+                <h4 class="left"><b>SGD (Stochastic Gradient Descentl 확률적 경사하강법)</b></h4>
+                <img src="../static/images/web_img/sgd.png" width=50% style="min-width: 400px;">
+                <p class="left">- SGD는 데이터 전체를 활용하여 가중치와 편향을 업데이트 하는 것이 아니라, 그 안의 <b>일부 데이터만 이용</b>합니다.
+                    전체 데이터에서 랜덤하게 배치 사이즈만큼 데이터를 추출하는데, 이를 미니 배치라고 합니다.
+                    이를 통해 <b>빠르게 학습</b>할 수 있을 뿐만 아니라 <b>메모리 또한 절약</b>할 수 있습니다.
+                </p>
+                <br>
+
+                <h4 class="left"><b>AdaGrad (Adaptive Gradient)</b></h4>
+                <img src="../static/images/web_img/adagrad.png" width=50% style="min-width: 600px;">
+                <p class="left">- 대부분의 옵티마이저 단점 중 하나는 <b>학습률이 모든 파라미터와 각 cycle에 대해 일정</b>하다는 것입니다.
+                    Adagrad는 <b>각 파라미터와 각 단계마다 학습률 &#951;을 변경</b>할 수 있습니다.
+                </p>
+                <p class="left">- Adagrad의 한 스텝을 수식화하면 다음과 같습니다.</p>
+                <img src="../static/images/web_img/adagrad2.png" width=50% style="min-width: 300px;">
+                <p class="left">- $G_t$는 k차원 벡터, $\Theta$를 업데이트 할 때 $G_t$의 루트 값에 반비례한 크기로 이동합니다.</p>
+                <p class="left">- 0으로 나누어지는 것을 방지하기 위해 $\epsilon$항이 추가되어 있습니다.</p>
+                <p class="left">- <b>학습을 진행할수록 학습률이 줄어든다는 문제점</b>이 존재합니다.
+                    $G_t$에 계속 제곱한 값을 넣어주기 때문에 <b>$G_t$의 값들은 무한히 계속 커지므로</b>, 학습이 오래 진행될 경우 학습률이 너무 작아져 결국 거의 움직이지 않게 됩니다.
+                    즉, <b>최소값에 도달하기도 전에 학습률이 0에 수렴</b>해 버릴 수도 있습니다.
+                </p>
+                <br>
+
+                <h4 class="left"><b>RMSProp</b></h4>
+                <img src="../static/images/web_img/rmsprop.png" width=50% style="min-width: 300px;">
+                <p class="left">- RMSProp은 <b>Adagrad에서 $G_t$값이 무한히 커지는 단점을 해결하기 위해 지수 이동평균(Exponentially weighted moving average)를 이용</b>합니다.
+                    Adagrad에서는 gradient의 제곱한 값을 계속 더해나가면서 $G_t$의 값을 구했는데, 여기서는 지수 이동평균을 이용해 가중치로 영향을 감소합니다.
+                    Adagrad의 $G_t$식과 비교하면 해당 지수 이동평균 식이 RMSProp의 $G_t$에 반영된 것을 알 수 있습니다.
+                </p>
+                <img src="../static/images/web_img/rmsprop2.png" width=50% style="min-width: 300px;">
+                <p class="left">- 한 스텝이 지날때마다 $(1-\alpha)$라는 가중치가 이전 값에 곱해지는데,
+                    이는 1보다 작기 때문에 <b>시간이 지날수록 영향력이 줄어드는 효과</b>가 있습니다. 따라서 <b>$G_t$가 무한정 커지지 않습니다</b>.
+                </p>
+                <br>
+
+                <h4 class="left"><b>Adam (Adaptive Moment Estimation)</b></h4>
+                <p class="left">- Momentum과 RMSProp의 장점을 취합해 높은 옵티마이저입니다.
+                    Adagrad나 RMSProp처럼 각 파라미터마다 다른 크기의 업데이트를 진행합니다.
+                    Adam의 직관은 local minimum을 뛰어넘을 수 있다는 이유만으로 빨리 굴러가는 것이 아닌, minimum 탐색을 위해 조심스럽게 속도를 줄이고자 하는 방식입니다.
+                    AdaDelta와 같이 Decaying average of squared gradients를 저장할 뿐만 아니라, 과거의 gradient $m_t$의 decaying average도 저장합니다.
+                </p>
+                <table width=100%>
+                    <tr>
+                        <td><img src="../static/images/web_img/adam1.png" width=50% style="min-width: 300px;"></td>
+                    </tr>
+                    <tr>
+                        <td><img src="../static/images/web_img/adam2.png" width=20% style="min-width: 100px;"></td>
+                    </tr>
+                    <tr>
+                        <td><img src="../static/images/web_img/adam3.png" width=30% style="min-width: 250px;"></td>
+                    </tr>
+                </table>
+                <p class="left">
+                    - $m_t$와 $\nu_t$가 <b>학습 초기에 0으로 편향되는 것을 방지</b>하기 위해 uncentered variance of the gradients인 $\hat{\mu_t}$와 $\hat{\nu_t}$를 계산해줍니다.
+                    이 보정된 값들을 가지고 파라미터를 업데이트합니다. 기존에 $G_t$ 자리에 $\hat{\nu_t}$을 넣고, gradient 자리에 $\hat{\mu_t}$를 넣어주면 됩니다.
+                    <b>loss가 최소값으로 빠르게 수렴</b>하고 <b>vanishing learing rate 문제와 high variance 문제를 해결</b>할 수 있습니다. 단점으로는 <b>계산 비용이 많이 든다</b>는게 단점입니다.
+                </p>
+                <br>
+
+                <h4 class="left"><b>Adamax</b></h4>
+                <p class="left">
+                    - <b>Adamax는 Adam 논문에서 확장되어 제안된 알고리즘</b>입니다.
+                    Adam은 $L_2$ norm을 기반으로 학습률을 조절하는 반면, Adamax는 <b>$L_2$ norm을 기반으로 학습률을 조절하는 부분을 $L_p$ norm으로 확장시킨 알고리즘</b>입니다.
+                    p가 매우 클 경우 극단적인 값을 가지기 때문에 매우 불안정하다는 것이 단점입니다.
+                    <b>p가 무한대로 갈 경우, $(g_{ij}^{(t)})^{1/p}$의 값을 $G_{ij}^{(t)}$값으로 정의하여 매우 간단하고 안정적인 알고리즘</b>이 만들어지는 것을 보여줬습니다.
+                </p>
+                <img src="../static/images/web_img/adamax1.png" width=70% style="min-width: 300px;">
+                <img src="../static/images/web_img/adamax2.png" width=30% style="min-width: 250px;">
+                <br>
+
+
+                <h4 class="left"><b>AdamW</b></h4>
+                <p class="left">
+                    - 일반화 성능이 좋지 않은 Adam의 단점을 보완하기 위해 등장했습니다.
+                    SGD에서는 wieght decay와 L2 정규화가 수식에서 똑같은 의미를 갖는 반면에, Adam에서는 다르기 때문입니다.
+                    Adam에서는 L2 정규화의 효과가 weight decay에 비해서 떨어지기 때문에, <b>weight decay를 Adam과 함께 사용하기 위해 고안한 것</b>이 AdamW입니다.
+                    <b>weight decay를 더하는 가중치 업데이트 식을 별도로 추가함으로써, weight decay와 학습률 하이퍼 파라미터가 정규화에 영향을 decouple한 방법</b>입니다.
+                </p>
+                <br>
+
+                <h4 class="left"><b>NAdam (Nesterov-accelerated Adaptive Memoment Adam)</b></h4>
+                <img src="../static/images/web_img/nadam.png" width=60% style="min-width: 600px;">
+                <br>
+                <br>
+                <p class="left">
+                    - NAdam은 이름에서 알 수 있듯이 <b>NAG와 Adam을 섞은 방법</b>입니다.
+                    Adam에서 적용한 모멘텀 기법을 <b>NAG로 변경</b>했습니다.
+                    Adam보다 <b>빠르고 정확하게 global minimum을 찾을 수 있다는 장점</b>이 있습니다.
+                </p>
+                <img src="../static/images/web_img/nadam2.png" width=50% style="min-width: 250px;">
+                <img src="../static/images/web_img/nadam3.png" width=50% style="min-width: 250px;">
+                <br>
+                <br>
+                <p class="left">
+                    - 기존의 NAG 공식에서는 파라미터 갱신을 위해 이전 단계의 모멘텀($m_{t-1}$)을 2번 사용했는데,
+                    NAdam에서는 <b>이전 단계의 모멘텀($m_{t-1}$)을 대신하여 현재의 모멘텀($m_t$)을 사용함으로써 미래의 모멘텀을 사용하는 효과</b>를 얻었습니다.
+                </p>
+                <br>
+
+                <h4 class="left"><b>RAdam (Recified Adam)</b></h4>
+                <p class="left">
+                    - RAdam은 <b>adaptive learning rate term의 분산을 바로 잡는다</b>는 의미입니다.
+                    즉 우리가 구한 분산 식을 거꾸로 이용해 <b>분산을 일관되게 만들 수 있는 rectification term을 구하고 이를 곱해줌으로써 학습의 안정성</b>을 얻을 수 있습니다.
+                </p>
+                <img src="../static/images/web_img/radam1.png" width=70% style="min-width: 250px;">
+                <img src="../static/images/web_img/radam2.png" width=30% style="min-width: 200px;">
+                <br>
+                <br>
+                <p class="left">
+                    - 위의 식에서 $\rho_t$는 $\rho$를 step size t를 이용하여 추정한 값입니다.
+                    scaled inverse chi square distribution과 지수평균의 단순 평균 근사 특징을 이용하여 구한 값입니다.
+                </p>
+            </details>
+            <br>
+
+            <h2 id=05>최종 모델 성능</h2>
+            <hr>
+            <p class="left">
+                YOLOv8 모델은 모델이 업데이트 되는 <b>이터레이션 수에 따라 그 수가 큰 경우에는 SGD</b>, <b>작은 경우에는 AdamW</b>로 optimizer가 세팅되어 있습니다.
+                먼저, optimizer를 제일 기본인 <b>Adam</b>,
+                Adam의 momentum을 NAG로 사용한 <b>NAdam</b>,
+                Adam에서 일반화 성능을 올린 <b>AdamW</b>,
+                Adam에서 학습률 부분을 L2 norm에서 Lp norm으로 바꾼 <b>Adamax</b>를 사용해봤습니다.
+                네 가지 optimizer 중 가장 기본 모델인 <b>Adam이 성능이 가장 낮고</b>, 그 다음 나온 <b>NAdam</b>, 마지막으로, <b>AdamW</b>와 <b>Adamax는 비슷할 것으로 기대</b>했습니다.
+            </p>
+            <img src="../static/images/web_img/optimizer2.png" width=50% style="min-width: 200px;">
+            <p><b>[표7] optimizer 성능 비교표</b></p>
+            <p class="left">
+                <b>AdamW</b>와 <b>Adamax</b>의 성능이 Adam, NAdam의 성능보다 <b>비교적 높은 것</b>을 확인할 수 있습니다.
+                AdamW와 Adamax는 거의 비슷하지만, Adamax가 조금 더 높은 이유는 Adamax는 특히 무한 norm을 기반으로 하기 때문에, <b>임베딩 벡터화 기법에 높은 성능</b>을 보입니다.
+                class16 데이터에 임베딩 기법을 사용한 전처리 이미지가 있기 때문에 class16의 성능이 높아 total mAP50도 비교적 높은 것으로 판단했습니다.
+                따라서 저희는 <b>AdamW</b>와 <b>Adamax</b>의 optimizer로 성능을 올리는 시도를 했습니다. (tensorflow 공식문서 참고)
+            </p>
+            <img src="../static/images/web_img/score_table4.png" width=80% style="min-width: 200px;">
+            <p><b>[표8] 하이퍼파라미터 성능 비교표</b></p>
+            <p class="left">
+                모델 학습 결과 <b>하이퍼파라미터를 Defalut</b>로 설정하고 <b>옵티마이저는 Adamax</b>로 설정하였을 때 <b>가장 좋은 성능</b>
+                을 보였습니다. 따라서 <b>해당 Best.pt 가중치를 사용하여 서비스 구현</b>을 하기로 하였습니다.
+            </p>
+            <br>
+            <h3 class="left">최종 모델에 대한 성능 그래프</h3>
+            <img src="../static/images/web_img/f1score.png" width=80% style="min-width: 200px;">
+            <p><b>[사진22] 최종 모델 F1_Score</b></p>
+            <p class="left">
+                가장 높은 f1_score를 보인 클래스는 <b>class14</b>와 <b>class18</b>인 것을 확인할 수 있습니다.
+                <b>class16이 가장 낮게</b> 나왔는데, 만약 이를 개선한다면 평균적으로 높은 성능의 모델을 기대할 수 있을 것입니다.
+            </p>
+
+            <img src="../static/images/web_img/precision.png" width=80% style="max-width: 600px;">
+            <p><b>[사진23] 최종 모델 Precision</b></p>
+            <img src="../static/images/web_img/recall.png" width=80% style="max-width: 600px;">
+            <p><b>[사진24] 최종 모델 Recall</b></p>
+            <img src="../static/images/web_img/map50.png" width=80% style="max-width: 600px;">
+            <p><b>[사진25] 최종 모델 mAP50</b></p>
+            <p class="left">
+                20epochs를 진행하는 동안의 최종 모델의 성능을 보면 점점 증가하는 것을 볼 수 있습니다.
+            </p>
+
+            <img src="../static/images/web_img/train_box_loss.png" width=80% style="max-width: 600px;">
+            <p><b>[사진26] 최종 모델 train_box_loss</b></p>
+            <img src="../static/images/web_img/train_cls_loss.png" width=80% style="max-width: 600px;">
+            <p><b>[사진27] 최종 모델 train_cls_loss</b></p>
+            <img src="../static/images/web_img/train_dfl_loss.png" width=80% style="max-width: 600px;">
+            <p><b>[사진28] 최종 모델 train_dfl_loss</b></p>
+            <p class="left">
+                학습을 진행하는 동안 train_loss값이 모두 점점 줄어드는 것을 볼 수 있습니다.
+            </p>
+
+            <img src="../static/images/web_img/val_box_loss.png" width=80% style="max-width: 600px;">
+            <p><b>[사진26] 최종 모델 val_box_loss</b></p>
+            <img src="../static/images/web_img/val_cls_loss.png" width=80% style="max-width: 600px;">
+            <p><b>[사진27] 최종 모델 val_cls_loss</b></p>
+            <img src="../static/images/web_img/val_dfl_loss.png" width=80% style="max-width: 600px;">
+            <p><b>[사진28] 최종 모델 val_dfl_loss</b></p>
+            <p class="left">
+                학습을 진행하는 동안 val_loss값 또한 모두 점점 줄어드는 것을 볼 수 있습니다.
+                train과 val loss 값이 모두 줄어들고 있는 것을 보아 과적합은 일어나지 않았다고 판단했습니다.
+                따라서, <b>epochs를 늘린다면 더 좋은 성능의 모델이 될 것</b>으로 기대됩니다.
+            </p>
+
+
+            <h2 id=06>출처</h2>
+            <hr>
+            <p><a href='https://heeya-stupidbutstudying.tistory.com/entry/ML-%EC%8B%A0%EA%B2%BD%EB%A7%9D%EC%97%90%EC%84%9C%EC%9D%98-Optimizer-%EC%97%AD%ED%95%A0%EA%B3%BC-%EC%A2%85%EB%A5%98'>https://heeya-stupidbutstudying.tistory.com/entry/ML-%EC%8B%A0%EA%B2%BD%EB%A7%9D%EC%97%90%EC%84%9C%EC%9D%98-Optimizer-%EC%97%AD%ED%95%A0%EA%B3%BC-%EC%A2%85%EB%A5%98</a></p>
+            <p><a href='https://velog.io/@cha-suyeon/DL-%EC%B5%9C%EC%A0%81%ED%99%94-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-RMSProp-Adam'>https://velog.io/@cha-suyeon/DL-%EC%B5%9C%EC%A0%81%ED%99%94-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-RMSProp-Adam</a></p>
+            <p><a href="https://untitledtblog.tistory.com/149">https://untitledtblog.tistory.com/149</a></p>
+            <p><a href="https://james-scorebook.tistory.com/entry/%EC%98%B5%ED%8B%B0%EB%A7%88%EC%9D%B4%EC%A0%80Optimizer-22">https://james-scorebook.tistory.com/entry/%EC%98%B5%ED%8B%B0%EB%A7%88%EC%9D%B4%EC%A0%80Optimizer-22</a></p>
+            <p><a href="https://zzaebok.github.io/deep_learning/RAdam/">https://zzaebok.github.io/deep_learning/RAdam/</a></p>
+            <p><a href="https://hiddenbeginner.github.io/deeplearning/paperreview/2019/12/29/paper_review_AdamW">https://hiddenbeginner.github.io/deeplearning/paperreview/2019/12/29/paper_review_AdamW</a></p>
+            <p><a href="https://conanmoon.medium.com/%EB%8D%B0%EC%9D%B4%ED%84%B0%EA%B3%BC%ED%95%99-%EC%9C%A0%EB%A7%9D%EC%A3%BC%EC%9D%98-%EB%A7%A4%EC%9D%BC-%EA%B8%80%EC%93%B0%EA%B8%B0-%EC%97%B4%EC%97%AC%EC%84%AF-%EB%B2%88%EC%A7%B8-%EC%9D%BC%EC%9A%94%EC%9D%BC-8a6cc162fd8">https://conanmoon.medium.com/%EB%8D%B0%EC%9D%B4%ED%84%B0%EA%B3%BC%ED%95%99-%EC%9C%A0%EB%A7%9D%EC%A3%BC%EC%9D%98-%EB%A7%A4%EC%9D%BC-%EA%B8%80%EC%93%B0%EA%B8%B0-%EC%97%B4%EC%97%AC%EC%84%AF-%EB%B2%88%EC%A7%B8-%EC%9D%BC%EC%9A%94%EC%9D%BC-8a6cc162fd8</a></p>
+            <hr>
+        </div>
+    </div>
+
+
+    </main>
+</body>
+
+</html>

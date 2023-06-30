@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+        rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+        crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>Stop!</title>
+    <style>
+        .container-fluid {
+            padding: 10px;
+        }
+        .navbar {
+            background-color: $blue-400;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar-expand-lg bg-light">
+      <div class="container-fluid">
+        <ul class="nav nav-pills">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/pjintro">Project intro</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/mdintro">Model intro</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/develop">Model develop</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/service">Service</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/remind">Remind</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="/cctv">cctv</a>
+          </li>
+        </ul>
+      </div>
+
+    </nav>
+
+    <main class="flex-shrink-0">
+        <div class="container">
+            <h1 class="mt-5">CCTV 실시간 영상 다운로드</h1>
+            <hr>
+            <p class="lead"><strong style="font-weight: bold; color: #003382;">CCTV 위치</strong>와 <strong style="font-weight: bold; color: #003382;">녹화시간</strong>을 
+            선택해주세요.</p>
+            <hr>
+        </div>
+        
+        <!-- CCTV form begins here -->
+        <div class="container">
+          <form method="POST" action="/cctv">
+            <div class="form-group">
+              <label for="cctvname">CCTV 위치:</label><br>
+              
+              <!-- CCTV names 드롭다운 목록 -->
+              <select id="cctvname" name="cctvname" class="form-control mb-1" style="width: 240px;"> <!-- id와 name 모두 'cctvname'으로 설정하여 form 데이터에서 CCTV 이름을 찾을 수 있음 -->
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="2,3호터널" >2,3호터널</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="3기동단 4거리" >3기동단 4거리</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="63빌딩" >63빌딩</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="AT센터" >AT센터</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="가락시장" >가락시장</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="가락시장역" >가락시장역</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="가양대교북단" >가양대교북단</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="강남세브란스" >강남세브란스</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="강남역" >강남역</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="강남터미널" >강남터미널</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="강서구청" >강서구청</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="강일IC" >강일IC</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="개화교" >개화교</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="개화사거리" >개화사거리</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="경기고" >경기고</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="경기장사거리" >경기장사거리</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="경남아파트" >경남아파트</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="경복궁역" >경복궁역</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="경복아파트" >경복아파트</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="경인2지하차도" >경인2지하차도</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="고려대" >고려대</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="고려대역" >고려대역</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="고척교" >고척교</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="공덕오거리" >공덕오거리</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="광산 4거리" >광산 4거리</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="광장사거리" >광장사거리</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="광화문" >광화문</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="광화문광장" >광화문광장</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="광흥창역" >광흥창역</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="교보타워R" >교보타워R</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="교육개발원입구" >교육개발원입구</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="구로IC" >구로IC</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="구로거리공원" >구로거리공원</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="구로역" >구로역</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="구룡4거리(시계)" >구룡4거리(시계)</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="구룡터널" >구룡터널</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="구반포R" >구반포R</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="구의사거리" >구의사거리</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="구파발" >구파발</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="국립4.19묘지입구" >국립4.19묘지입구</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="국립국악원" >국립국악원</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="국립현충원" >국립현충원</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="국회" >국회</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="국회대로 여의 방향 진입" >국회대로 여의 방향 진입</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="국회도서관" >국회도서관</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="군자교" >군자교</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="굽은다리역" >굽은다리역</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="금천구청 3거리" >금천구청 3거리</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="길동사거리" >길동사거리</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="길음" >길음</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="길음역" >길음역</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="김포공항입구" >김포공항입구</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="까치고개" >까치고개</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="남대문" >남대문</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="남태령고개" >남태령고개</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="내곡IC" >내곡IC</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="노량진삼거리" >노량진삼거리</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="노원 롯데" >노원 롯데</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="녹번3R" >녹번3R</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="녹사평역" >녹사평역</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="논현역" >논현역</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="능산사거리" >능산사거리</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="당곡사거리" >당곡사거리</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="대공원후문" >대공원후문</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="대림삼거리" >대림삼거리</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="대신R" >대신R</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="대진고교" >대진고교</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="대치사거리" >대치사거리</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="대학로" >대학로</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="도봉검문소" >도봉검문소</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="도산공원" >도산공원</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="도선사거리" >도선사거리</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="도시철도공사" >도시철도공사</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="독립문" >독립문</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="동1로지하차도" >동1로지하차도</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="동교동삼거리" >동교동삼거리</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="동대문구청" >동대문구청</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="동대문운동장" >동대문운동장</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="동묘앞역" >동묘앞역</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="동호대교남단" >동호대교남단</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="둔촌사거리" >둔촌사거리</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="디지털단지" >디지털단지</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="떡전교" >떡전교</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="르네상스" >르네상스</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="마포대교남단" >마포대교남단</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="말미R" >말미R</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="망우사거리" >망우사거리</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="매봉터널" >매봉터널</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="명동역" >명동역</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="명일E마트" >명일E마트</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="목동교" >목동교</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="목동오거리" >목동오거리</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="문래고가밑" >문래고가밑</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="미아사거리" >미아사거리</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="박미고개" >박미고개</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="박석고개R" >박석고개R</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="반포IC" >반포IC</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="반포대교남단" >반포대교남단</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="발산역" >발산역</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="방학사거리" >방학사거리</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="방학신동아" >방학신동아</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="방화대교남단" >방화대교남단</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="배봉초교" >배봉초교</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="번동사거리" >번동사거리</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="법원 4거리" >법원 4거리</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="보라매역" >보라매역</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="복정사거리" >복정사거리</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="봉은교서단" >봉은교서단</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="봉은사삼거리" >봉은사삼거리</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="북서울꿈의숲" >북서울꿈의숲</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="북한남" >북한남</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="사당역" >사당역</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="삼각지" >삼각지</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="삼릉공원" >삼릉공원</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="삼성역" >삼성역</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="삼양R" >삼양R</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="삼양동입구" >삼양동입구</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="삼전사거리" >삼전사거리</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="삼호가든" >삼호가든</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="상계7,9,10단지" >상계7,9,10단지</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="상계초교" >상계초교</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="상도" >상도</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="상암교" >상암교</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="상암사거리" >상암사거리</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="상암초교" >상암초교</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="상왕십리역" >상왕십리역</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="상일IC" >상일IC</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="생태공원" >생태공원</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="서대문역" >서대문역</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="서부트럭터미널" >서부트럭터미널</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="서울광장" >서울광장</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="서울교남단" >서울교남단</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="서울대입구R" >서울대입구R</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="서울성모병원" >서울성모병원</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="서울세관사거리" >서울세관사거리</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="서울숲" >서울숲</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="서울역" >서울역</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="서울혁신파크" >서울혁신파크</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="서초IC" >서초IC</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="서초역사거리" >서초역사거리</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="석촌역" >석촌역</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="선사사거리" >선사사거리</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="선암IC" >선암IC</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="성균관대입구" >성균관대입구</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="성동교남단" >성동교남단</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="성산2교" >성산2교</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="성산대교남단" >성산대교남단</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="성산대교북단" >성산대교북단</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="성수대교" >성수대교</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="성수대교남단" >성수대교남단</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="세곡사거리" >세곡사거리</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="세운상가" >세운상가</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="세종로" >세종로</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="수락지하도" >수락지하도</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="수색교" >수색교</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="수색역3거리" >수색역3거리</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="수서IC" >수서IC</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="수서역" >수서역</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="수유사거리" >수유사거리</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="숙대입구역" >숙대입구역</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="시립동부병원" >시립동부병원</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="시청" >시청</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="시흥IC" >시흥IC</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="시흥대교" >시흥대교</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="신내차량사업소" >신내차량사업소</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="신답역" >신답역</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="신당로터리" >신당로터리</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="신도림역" >신도림역</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="신사오거리" >신사오거리</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="신설로터리" >신설로터리</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="신영삼거리" >신영삼거리</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="신월IC" >신월IC</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="신정교동단" >신정교동단</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="신정역" >신정역</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="신촌" >신촌</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="신풍" >신풍</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="아현" >아현</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="안국역" >안국역</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="안암오거리" >안암오거리</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="안양교" >안양교</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="압구정R" >압구정R</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="약수고가" >약수고가</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="양재IC" >양재IC</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="양재역" >양재역</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="양평4거리" >양평4거리</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="양화대교남단" >양화대교남단</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="양화대교북단" >양화대교북단</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="어린이과학관" >어린이과학관</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="어린이대공원역" >어린이대공원역</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="여의공원" >여의공원</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="여의교남단" >여의교남단</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="여의교북단" >여의교북단</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="여의대로 여의3 -&gt; 신월 방향" >여의대로 여의3 -&gt; 신월 방향</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="여의도공원" >여의도공원</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="여의도국민은행" >여의도국민은행</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="여의하류IC" >여의하류IC</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="역삼역" >역삼역</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="역촌R" >역촌R</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="연세대" >연세대</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="연신내" >연신내</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="연희IC" >연희IC</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="염곡" >염곡</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="염곡IC" >염곡IC</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="염천교" >염천교</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="영동대교남단" >영동대교남단</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="영동대교북단" >영동대교북단</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="영동전화국" >영동전화국</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="영등포시장" >영등포시장</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="영등포역" >영등포역</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="영등포전화국R" >영등포전화국R</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="예일여고" >예일여고</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="오금교서단" >오금교서단</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="오금사거리" >오금사거리</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="오류IC" >오류IC</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="오륜R" >오륜R</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="오목교" >오목교</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="온수" >온수</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="올림픽 북단" >올림픽 북단</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="올림픽공원" >올림픽공원</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="올림픽공원남단" >올림픽공원남단</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="올림픽대교남단" >올림픽대교남단</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="왕십리역오거리" >왕십리역오거리</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="외발산사거리" >외발산사거리</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="용곡삼거리" >용곡삼거리</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="용산가족공원" >용산가족공원</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="용산구청" >용산구청</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="우신초교" >우신초교</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="워커힐" >워커힐</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="원남R" >원남R</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="원불교" >원불교</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="원효대교남단" >원효대교남단</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="월계1교" >월계1교</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="월계2교" >월계2교</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="월계진아" >월계진아</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="월곡역" >월곡역</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="월드컵 정문" >월드컵 정문</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="월릉교" >월릉교</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="위례1" >위례1</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="위례2" >위례2</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="은마아파트" >은마아파트</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="은평구청" >은평구청</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="을지로1가" >을지로1가</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="을지로2가" >을지로2가</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="을지로3R" >을지로3R</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="을지로4가" >을지로4가</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="을지병원R" >을지병원R</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="응봉고개" >응봉고개</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="응암오거리" >응암오거리</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="이대역" >이대역</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="이수교" >이수교</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="이수역" >이수역</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="이화사거리" >이화사거리</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="일원터널" >일원터널</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="자곡 4거리" >자곡 4거리</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="잠실대교북단" >잠실대교북단</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="잠실역" >잠실역</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="잠원IC" >잠원IC</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="장승배기" >장승배기</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="장안R" >장안R</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="장안교" >장안교</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="장지교" >장지교</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="장충로터리" >장충로터리</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="장평교" >장평교</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="정동" >정동</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="정의여중" >정의여중</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="종로2가" >종로2가</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="종합운동장" >종합운동장</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="중계역" >중계역</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="중랑교" >중랑교</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="중화중교" >중화중교</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="증산교" >증산교</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="증산역" >증산역</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="창덕궁R" >창덕궁R</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="창동교" >창동교</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="천호대교남단" >천호대교남단</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="천호사거리" >천호사거리</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="철도빌딩" >철도빌딩</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="철산대교" >철산대교</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="청계2가" >청계2가</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="청계5가" >청계5가</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="청계6가" >청계6가</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="청계8가" >청계8가</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="청담공원" >청담공원</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="청담교" >청담교</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="청담대교북단" >청담대교북단</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="청담사거리" >청담사거리</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="청량리" >청량리</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="청운초교" >청운초교</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="충정로" >충정로</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="코엑스" >코엑스</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="탄천1교" >탄천1교</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="탄천2교" >탄천2교</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="태릉입구역" >태릉입구역</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="태양아파트" >태양아파트</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="테크노마트" >테크노마트</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="퇴계2가" >퇴계2가</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="퇴계5가" >퇴계5가</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="포스코" >포스코</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="학여울역" >학여울역</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="한강대교북단" >한강대교북단</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="한강중학교" >한강중학교</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="한남고가" >한남고가</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="한성대입구" >한성대입구</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="한양대" >한양대</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="합정역" >합정역</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="행주대교남단" >행주대교남단</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="홍남교" >홍남교</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="홍은" >홍은</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="화곡역" >화곡역</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="화곡입구" >화곡입구</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="화랑대사거리" >화랑대사거리</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="화양사거리" >화양사거리</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="회기역" >회기역</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="회현R" >회현R</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="효창공원역" >효창공원역</option>
+                 <!-- 서버에서 제공하는 모든 CCTV 이름에 대해 반복문 실행 -->
+                  <!--각 option 요소가 선택된 CCTV 이름과 같은지 확인하고, 만약 그렇다면 해당 option 요소에 selected 속성을 추가합니다. 이를 위해 Jinja2 템플릿 엔진의 if 문을 사용할 수 있음-->
+                  <option value="힐튼호텔" >힐튼호텔</option>
+                
+              </select>
+              <button id="add-cctv" type="button" class="btn btn-primary mt-1 mb-3">CCTV 추가</button>
+            </div>
+
+            <div class="form-group">
+              <label for="time">녹화시간 (초):</label><br>
+
+              <!-- time 드롭다운 목록 -->
+
+              <select id="time" name="time" class="form-control mb-1" style="width: 240px;"> <!-- form-control 클래스는 Bootstrap에서 폼 컨트롤에 대한 기본 스타일을 적용하기 위한 클래스입니다. 이 클래스를 사용하면 요소에 적절한 패딩, 폰트 크기, 테두리 라운딩 등이 자동으로 적용됨 -->
+                  <option value="10">10 초</option> <!-- 10초를 선택항목 값으로 설정. 사용자는 '10 seconds'라는 텍스트를 화면에서 볼 수 있음 -->
+                  <option value="20">20 초</option>
+                  <option value="300">300 초</option>
+                  <!-- 필요에 따라 더 많은 옵션을 추가할 수 있음 -->
+              </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary mt-1 mb-3">다운로드</button><!-- '다운로드' 버튼. 이 버튼을 클릭하면 form이 제출됨 -->
+          </form>
+        </div>
+        <!-- CCTV form ends here -->
+        <!-- 추가된 CCTV 이름을 표시할 영역 -->
+        <div class="container">
+          <h3>CCTV 목록:</h3>
+          <ul id="addedCCTVNames"></ul> <!-- 초기에는 빈 목록으로 설정 -->
+        </div>
+
+        <script>
+          document.getElementById('add-cctv').addEventListener('click', function() {
+            var cctvSelect = document.getElementById('cctvname');
+            var selectedCCTVName = cctvSelect.options[cctvSelect.selectedIndex].value;
+            var listItem = document.createElement('li');
+            listItem.textContent = selectedCCTVName;
+            document.getElementById('addedCCTVNames').appendChild(listItem);
+        
+            // 선택한 CCTV 이름을 <select> 태그에서 제거
+            cctvSelect.remove(cctvSelect.selectedIndex);
+
+            // 선택한 CCTV 이름을 <input type="hidden"> 태그로 추가
+            var hiddenInput = document.createElement('input');
+            hiddenInput.type = 'hidden';
+            hiddenInput.name = 'cctvname';
+            hiddenInput.value = selectedCCTVName;
+            document.querySelector('form').appendChild(hiddenInput);
+          });
+        </script>        
+    </main>
+</body>
+
+</html>
